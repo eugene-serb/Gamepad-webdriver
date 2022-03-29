@@ -1,8 +1,12 @@
+/* ------------------ */
+/* GAMEPAD WEB DRIVER */
+/* ------------------ */
+
 'use strict'
 
-const OUTPUT = document.querySelector('#gamepad-output');
-
-/**/
+/* ------- */
+/* GAMEPAD */
+/* ------- */
 
 class Gamepad {
 
@@ -71,7 +75,7 @@ class Gamepad {
                 OUTPUT.textContent = 'Key R2 was pressed';
                 break;
             case 8:
-                OUTPUT.textContent = 'Key Back was pressed';
+                OUTPUT.textContent = 'Key Select was pressed';
                 break;
             case 9:
                 OUTPUT.textContent = 'Key Start was pressed';
@@ -101,5 +105,10 @@ class Gamepad {
     };
 };
 
+/* -------------- */
+/* INITIALIZATION */
+/* -------------- */
+
+const OUTPUT = document.querySelector('#gamepad-output');
 const GAMEPAD = new Gamepad();
 
