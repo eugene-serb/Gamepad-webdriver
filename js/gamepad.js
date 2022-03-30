@@ -45,7 +45,7 @@ class Gamepad {
     };
 
     _checkGamepadSupport = () => {
-        return 'getGamepads' in window.navigator
+        return 'getGamepads' in window.navigator;
     };
 
     _gamepadHandler = (button) => {

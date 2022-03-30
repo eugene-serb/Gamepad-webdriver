@@ -1,2 +1,10 @@
 @charset 'UTF-8';
 
+.gamepad-webdriver__header {
+    text-align: center;
+}
+
+.output-wrapper {
+    text-align: center;
+}
+
