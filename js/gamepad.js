@@ -22,8 +22,6 @@ class Gamepad {
         let isPressed = false;
         let button;
 
-        console.log(this.gamepad);
-
         this.gamepad.buttons.forEach((item, index) => {
             if (item.value === 1) {
                 button = index;
