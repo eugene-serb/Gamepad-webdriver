@@ -19,81 +19,48 @@ class Gamepad {
         let gamepads = navigator.getGamepads();
         this.gamepad = gamepads[this.gamepad.index];
 
-        let isPressed = false;
-        let button;
+        this._gamepadHandler();
+    };
 
-        this.gamepad.buttons.forEach((item, index) => {
-            if (item.value === 1) {
-                button = index;
-                isPressed = true;
-            };
-        });
+    _gamepadHandler = () => {
+        console.log(this.gamepad);
+    };
+};
 
-        if (!isPressed) {
-            return;
-        } else {
-            this._gamepadHandler(button);
-        };
+class ExampleGamepad extends Gamepad {
+
+    constructor(item) {
+        super();
+
+        this.gamepad = item;
+        this.interval = setInterval(this._update, 100);
     };
     
-    _gamepadHandler = (button) => {
-
-        let buttonName = 'has-no-name';
-
-        switch (button) {
-            case 0:
-                buttonName = 'A';
-                break;
-            case 1:
-                buttonName = 'B';
-                break;
-            case 2:
-                buttonName = 'X';
-                break;
-            case 3:
-                buttonName = 'Y';
-                break
-            case 4:
-                buttonName = 'L1';
-                break;
-            case 5:
-                buttonName = 'R1';
-                break;
-            case 6:
-                buttonName = 'L2';
-                break;
-            case 7:
-                buttonName = 'R2';
-                break;
-            case 8:
-                buttonName = 'Select';
-                break;
-            case 9:
-                buttonName = 'Start';
-                break;
-            case 10:
-                buttonName = 'at Left Stick';
-                break;
-            case 11:
-                buttonName = 'at Right Stick';
-                break;
-            case 12:
-                buttonName = 'Forward';
-                break;
-            case 13:
-                buttonName = 'Backward';
-                break;
-            case 14:
-                buttonName = 'Left';
-                break;
-            case 15:
-                buttonName = 'Right';
-                break;
-            default:
-                break;
-        };
-
-        OUTPUT.textContent = `Key ${buttonName} on Gamepad ${this.gamepad.index} was pressed`;
+    _gamepadHandler = () => {
+        OUTPUT.innerHTML = `<span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
+                            <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
+                            <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
+                            <span class="${this.gamepad.buttons[3].value ? 'pressed' : ''}">Key Y</span>
+                            <br />
+                            <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key L1</span>
+                            <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key R1</span>
+                            <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key L2</span>
+                            <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key R2</span>
+                            <br />
+                            <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Select</span>
+                            <span class="${this.gamepad.buttons[9].value ? 'pressed' : ''}">Key Start</span>
+                            <span class="${this.gamepad.buttons[10].value ? 'pressed' : ''}">Key at Left Stick</span>
+                            <span class="${this.gamepad.buttons[11].value ? 'pressed' : ''}">Key at Right Stick</span>
+                            <br />
+                            <span class="${this.gamepad.buttons[12].value ? 'pressed' : ''}">Key Forward</span>
+                            <span class="${this.gamepad.buttons[13].value ? 'pressed' : ''}">Key Backward</span>
+                            <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
+                            <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
+                            <br />
+                            <span>Left Axe X: ${this.gamepad.axes[0]}</span>
+                            <span>Left Axe Y: ${this.gamepad.axes[1]}</span>
+                            <span>Right Axe X: ${this.gamepad.axes[2]}</span>
+                            <span>Right Axe Y: ${this.gamepad.axes[3]}</span>`;
     };
 };
 
@@ -125,7 +92,7 @@ class GamepadDriver {
 
     _connectGamepads = () => {
         window.addEventListener('gamepadconnected', (event) => {
-            this.gamepads.push(new Gamepad(event.gamepad));
+            this.gamepads.push(new ExampleGamepad(event.gamepad));
             console.log(`Connection of the new gamepad at index ${event.gamepad.index} was happened.`);
         });
     };
@@ -147,6 +114,6 @@ class GamepadDriver {
 /* INITIALIZATION */
 /* -------------- */
 
-const OUTPUT = document.querySelector('#gamepad-output');
+const OUTPUT = document.querySelector('.output-wrapper');
 const GAMEPAD_DRIVER = new GamepadDriver();
 
