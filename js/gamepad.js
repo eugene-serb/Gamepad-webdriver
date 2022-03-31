@@ -33,15 +33,17 @@ class Gamepad {
 
 class ActiveGamepad extends Gamepad {
 
-    constructor(item) {
+    constructor(item, container) {
         super();
 
         this.gamepad = item;
-        this.interval = setInterval(this._update, 100);
+        this.container = document.querySelector(`.${container}`);
+
+        this.interval = setInterval(this._update, 1);
     };
 
     _gamepadHandler = () => {
-        OUTPUT.innerHTML = `<section class="output-gamepad-${this.gamepad.index}">
+        this.container.innerHTML = `
                                 <h3>GamePad ${this.gamepad.index}</h3>
                                 <span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
                                 <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
@@ -66,8 +68,7 @@ class ActiveGamepad extends Gamepad {
                                 <span>Left Axe X: ${this.gamepad.axes[0]}</span>
                                 <span>Left Axe Y: ${this.gamepad.axes[1]}</span>
                                 <span>Right Axe X: ${this.gamepad.axes[2]}</span>
-                                <span>Right Axe Y: ${this.gamepad.axes[3]}</span>
-                            </section >`;
+                                <span>Right Axe Y: ${this.gamepad.axes[3]}</span>`;
     };
 };
 
@@ -77,7 +78,8 @@ class ActiveGamepad extends Gamepad {
 
 class GamepadDriver {
 
-    constructor() {
+    constructor(container) {
+        this.container = container;
         this._init();
     };
 
@@ -99,7 +101,12 @@ class GamepadDriver {
 
     _connectGamepads = () => {
         window.addEventListener('gamepadconnected', (event) => {
-            this.gamepads.push(new ActiveGamepad(event.gamepad));
+
+            let gamepadContainer = document.createElement('section');
+            gamepadContainer.classList.add(`output-gamepad-${event.gamepad.index}`);
+            this.container.appendChild(gamepadContainer);
+
+            this.gamepads.push(new ActiveGamepad(event.gamepad, `output-gamepad-${event.gamepad.index}`));
             console.log(`Connection of the new gamepad at index ${event.gamepad.index} was happened.`);
         });
     };
@@ -122,5 +129,5 @@ class GamepadDriver {
 /* -------------- */
 
 const OUTPUT = document.querySelector('.output-wrapper');
-const GAMEPAD_DRIVER = new GamepadDriver();
+const GAMEPAD_DRIVER = new GamepadDriver(OUTPUT);
 
