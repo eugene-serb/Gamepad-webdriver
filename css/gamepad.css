@@ -10,7 +10,14 @@
 
 .output-wrapper {
     margin-block-start: 32px;
+    display: flex;
+    flex-direction: row;
     text-align: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+[class^="output-gamepad"] {
     display: flex;
     flex-direction: column;
 }

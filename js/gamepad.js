@@ -27,6 +27,10 @@ class Gamepad {
     };
 };
 
+/* --------------- */
+/* GAMEPAD EXAMPLE */
+/* --------------- */
+
 class ExampleGamepad extends Gamepad {
 
     constructor(item) {
@@ -37,30 +41,33 @@ class ExampleGamepad extends Gamepad {
     };
     
     _gamepadHandler = () => {
-        OUTPUT.innerHTML = `<span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
-                            <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
-                            <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
-                            <span class="${this.gamepad.buttons[3].value ? 'pressed' : ''}">Key Y</span>
-                            <br />
-                            <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key L1</span>
-                            <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key R1</span>
-                            <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key L2</span>
-                            <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key R2</span>
-                            <br />
-                            <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Select</span>
-                            <span class="${this.gamepad.buttons[9].value ? 'pressed' : ''}">Key Start</span>
-                            <span class="${this.gamepad.buttons[10].value ? 'pressed' : ''}">Key at Left Stick</span>
-                            <span class="${this.gamepad.buttons[11].value ? 'pressed' : ''}">Key at Right Stick</span>
-                            <br />
-                            <span class="${this.gamepad.buttons[12].value ? 'pressed' : ''}">Key Forward</span>
-                            <span class="${this.gamepad.buttons[13].value ? 'pressed' : ''}">Key Backward</span>
-                            <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
-                            <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
-                            <br />
-                            <span>Left Axe X: ${this.gamepad.axes[0]}</span>
-                            <span>Left Axe Y: ${this.gamepad.axes[1]}</span>
-                            <span>Right Axe X: ${this.gamepad.axes[2]}</span>
-                            <span>Right Axe Y: ${this.gamepad.axes[3]}</span>`;
+        OUTPUT.innerHTML = `<section class="output-gamepad-${this.gamepad.index}">
+                                <h3>GamePad</h3>
+                                <span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
+                                <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
+                                <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
+                                <span class="${this.gamepad.buttons[3].value ? 'pressed' : ''}">Key Y</span>
+                                <br />
+                                <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key L1</span>
+                                <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key R1</span>
+                                <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key L2</span>
+                                <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key R2</span>
+                                <br />
+                                <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Select</span>
+                                <span class="${this.gamepad.buttons[9].value ? 'pressed' : ''}">Key Start</span>
+                                <span class="${this.gamepad.buttons[10].value ? 'pressed' : ''}">Key at Left Stick</span>
+                                <span class="${this.gamepad.buttons[11].value ? 'pressed' : ''}">Key at Right Stick</span>
+                                <br />
+                                <span class="${this.gamepad.buttons[12].value ? 'pressed' : ''}">Key Forward</span>
+                                <span class="${this.gamepad.buttons[13].value ? 'pressed' : ''}">Key Backward</span>
+                                <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
+                                <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
+                                <br />
+                                <span>Left Axe X: ${this.gamepad.axes[0]}</span>
+                                <span>Left Axe Y: ${this.gamepad.axes[1]}</span>
+                                <span>Right Axe X: ${this.gamepad.axes[2]}</span>
+                                <span>Right Axe Y: ${this.gamepad.axes[3]}</span>
+                            </section >`;
     };
 };
 
