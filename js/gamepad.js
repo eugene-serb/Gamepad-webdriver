@@ -31,7 +31,7 @@ class Gamepad {
 /* GAMEPAD EXAMPLE */
 /* --------------- */
 
-class ExampleGamepad extends Gamepad {
+class ActiveGamepad extends Gamepad {
 
     constructor(item) {
         super();
@@ -39,10 +39,10 @@ class ExampleGamepad extends Gamepad {
         this.gamepad = item;
         this.interval = setInterval(this._update, 100);
     };
-    
+
     _gamepadHandler = () => {
         OUTPUT.innerHTML = `<section class="output-gamepad-${this.gamepad.index}">
-                                <h3>GamePad</h3>
+                                <h3>GamePad ${this.gamepad.index}</h3>
                                 <span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
                                 <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
                                 <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
@@ -99,7 +99,7 @@ class GamepadDriver {
 
     _connectGamepads = () => {
         window.addEventListener('gamepadconnected', (event) => {
-            this.gamepads.push(new ExampleGamepad(event.gamepad));
+            this.gamepads.push(new ActiveGamepad(event.gamepad));
             console.log(`Connection of the new gamepad at index ${event.gamepad.index} was happened.`);
         });
     };
