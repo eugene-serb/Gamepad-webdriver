@@ -130,14 +130,12 @@ class GamepadDriver {
 
             console.log(`Disconnect of gamepad at index ${event.gamepad.index} was happened.`);
 
-            /*
             this.gamepads.forEach((item, index) => {
-                if (item.id === event.gamepad.id) {
-                    console.log(index, true);
-
-                    this.gamepads.slice(index, 1);
+                if (item.gamepad.id === event.gamepad.id) {
+                    clearInterval(this.gamepads[index].interval);
+                    this.gamepads.splice(index, 1);
                 };
-            }); */
+            });
 
         });
     };
