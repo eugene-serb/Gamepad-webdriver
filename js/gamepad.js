@@ -35,61 +35,65 @@ class Gamepad {
             this._gamepadHandler(button);
         };
     };
-
+    
     _gamepadHandler = (button) => {
+
+        let buttonName = 'has-no-name';
+
         switch (button) {
             case 0:
-                OUTPUT.textContent = `Key A on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'A';
                 break;
             case 1:
-                OUTPUT.textContent = `Key B on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'B';
                 break;
             case 2:
-                OUTPUT.textContent = `Key X on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'X';
                 break;
             case 3:
-                OUTPUT.textContent = `Key Y on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Y';
                 break
             case 4:
-                OUTPUT.textContent = `Key L1 on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'L1';
                 break;
             case 5:
-                OUTPUT.textContent = `Key R1 on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'R1';
                 break;
             case 6:
-                OUTPUT.textContent = `Key L2 on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'L2';
                 break;
             case 7:
-                OUTPUT.textContent = `Key R2 on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'R2';
                 break;
             case 8:
-                OUTPUT.textContent = `Key Select on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Select';
                 break;
             case 9:
-                OUTPUT.textContent = `Key Start on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Start';
                 break;
             case 10:
-                OUTPUT.textContent = `Key at Left Stick on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'at Left Stick';
                 break;
             case 11:
-                OUTPUT.textContent = `Key at Right Stick on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'at Right Stick';
                 break;
             case 12:
-                OUTPUT.textContent = `Key Forward on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Forward';
                 break;
             case 13:
-                OUTPUT.textContent = `Key Backward on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Backward';
                 break;
             case 14:
-                OUTPUT.textContent = `Key Left on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Left';
                 break;
             case 15:
-                OUTPUT.textContent = `Key Right on Gamepad ${this.gamepad.index} was pressed`;
+                buttonName = 'Right';
                 break;
             default:
-                OUTPUT.textContent = `Key HUEVOZNAET on Gamepad ${this.gamepad.index} was pressed`;
                 break;
         };
+
+        OUTPUT.textContent = `Key ${buttonName} on Gamepad ${this.gamepad.index} was pressed`;
     };
 };
 
@@ -122,21 +126,19 @@ class GamepadDriver {
     _connectGamepads = () => {
         window.addEventListener('gamepadconnected', (event) => {
             this.gamepads.push(new Gamepad(event.gamepad));
+            console.log(`Connection of the new gamepad at index ${event.gamepad.index} was happened.`);
         });
     };
 
     _disconnectGamepads = () => {
         window.addEventListener('gamepaddisconnected', (event) => {
-
-            console.log(`Disconnect of gamepad at index ${event.gamepad.index} was happened.`);
-
             this.gamepads.forEach((item, index) => {
                 if (item.gamepad.id === event.gamepad.id) {
                     clearInterval(this.gamepads[index].interval);
                     this.gamepads.splice(index, 1);
                 };
             });
-
+            console.log(`Disconnecton of the gamepad at index ${event.gamepad.index} was happened.`);
         });
     };
 };
