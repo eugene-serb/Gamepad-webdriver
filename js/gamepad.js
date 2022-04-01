@@ -12,7 +12,7 @@ class Gamepad {
 
     constructor(item) {
         this.gamepad = item;
-        // this.interval = setInterval(this._update, 100);
+        this.interval = setInterval(this._update, 1);
     };
 
     _update = () => {
@@ -38,8 +38,6 @@ class ActiveGamepad extends Gamepad {
 
         this.gamepad = item;
         this.container = document.querySelector(`.${container}`);
-
-        this.interval = setInterval(this._update, 1);
     };
 
     _gamepadHandler = () => {
@@ -109,6 +107,7 @@ class GamepadMaster {
             this.container.appendChild(gamepadContainer);
 
             this.gamepads.push(new ActiveGamepad(event.gamepad, `output-gamepad-${event.gamepad.index}`));
+
             /*console.log(`A new gamepad has been connected at index ${event.gamepad.index}.`);*/
         });
     };
@@ -137,5 +136,5 @@ class GamepadMaster {
 /* -------------- */
 
 const OUTPUT = document.querySelector('.output-wrapper');
-const GAMEPAD_DRIVER = new GamepadMaster(OUTPUT);
+const GAMEPAD_MASTER = new GamepadMaster(OUTPUT);
 
