@@ -12,7 +12,7 @@ class Gamepad {
 
     constructor(item) {
         this.gamepad = item;
-        this.interval = setInterval(this._update, 100);
+        // this.interval = setInterval(this._update, 100);
     };
 
     _update = () => {
@@ -67,10 +67,10 @@ class ActiveGamepad extends Gamepad {
                                 <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
                                 <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
                                 <br />
-                                <span>Left Stick X: ${this.gamepad.axes[0] ? this.gamepad.axes[0] : ''}</span>
-                                <span>Left Stick Y: ${this.gamepad.axes[1] ? this.gamepad.axes[1] : ''}</span>
-                                <span>Right Stick X: ${this.gamepad.axes[2] ? this.gamepad.axes[2] : ''}</span>
-                                <span>Right Stick Y: ${this.gamepad.axes[3] ? this.gamepad.axes[3] : ''}</span>`;
+                                <span>Left Stick X: ${this.gamepad.axes[0] ? this.gamepad.axes[0] : 'missing'}</span>
+                                <span>Left Stick Y: ${this.gamepad.axes[1] ? this.gamepad.axes[1] : 'missing'}</span>
+                                <span>Right Stick X: ${this.gamepad.axes[2] ? this.gamepad.axes[2] : 'missing'}</span>
+                                <span>Right Stick Y: ${this.gamepad.axes[3] ? this.gamepad.axes[3] : 'missing'}</span>`;
     };
 };
 
@@ -109,19 +109,25 @@ class GamepadDriver {
             this.container.appendChild(gamepadContainer);
 
             this.gamepads.push(new ActiveGamepad(event.gamepad, `output-gamepad-${event.gamepad.index}`));
-            console.log(`A new gamepad has been connected at index ${event.gamepad.index}.`);
+            /*console.log(`A new gamepad has been connected at index ${event.gamepad.index}.`);*/
         });
     };
 
     _disconnectGamepads = () => {
         window.addEventListener('gamepaddisconnected', (event) => {
+
             this.gamepads.forEach((item, index) => {
                 if (item.gamepad.id === event.gamepad.id) {
                     clearInterval(this.gamepads[index].interval);
                     this.gamepads.splice(index, 1);
                 };
             });
-            console.log(`The gamepad with index ${event.gamepad.index} has been disabled.`);
+
+            let gamepadContainer = document.querySelector(`.output-gamepad-${event.gamepad.index}`);
+            gamepadContainer.setAttribute('hidden', '');
+            gamepadContainer.classList.remove(`output-gamepad-${event.gamepad.index}`);
+
+            /*console.log(`The gamepad with index ${event.gamepad.index} has been disabled.`);*/
         });
     };
 };
