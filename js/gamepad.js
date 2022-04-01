@@ -1,6 +1,6 @@
-/* ------------------ */
-/* GAMEPAD WEB DRIVER */
-/* ------------------ */
+/* -------------- */
+/* GAMEPAD MASTER */
+/* -------------- */
 
 'use strict'
 
@@ -78,7 +78,7 @@ class ActiveGamepad extends Gamepad {
 /* GAMEPAD DRIVER */
 /* -------------- */
 
-class GamepadDriver {
+class GamepadMaster {
 
     constructor(container) {
         this.container = container;
@@ -137,5 +137,5 @@ class GamepadDriver {
 /* -------------- */
 
 const OUTPUT = document.querySelector('.output-wrapper');
-const GAMEPAD_DRIVER = new GamepadDriver(OUTPUT);
+const GAMEPAD_DRIVER = new GamepadMaster(OUTPUT);
 
