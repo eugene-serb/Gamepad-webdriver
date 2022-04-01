@@ -45,17 +45,19 @@ class ActiveGamepad extends Gamepad {
     _gamepadHandler = () => {
         this.container.innerHTML = `
                                 <h3>GamePad ${this.gamepad.index}</h3>
+                                <span>${this.gamepad.id}</span>
+                                <br />
                                 <span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
                                 <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
                                 <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
                                 <span class="${this.gamepad.buttons[3].value ? 'pressed' : ''}">Key Y</span>
                                 <br />
-                                <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key L1</span>
-                                <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key R1</span>
-                                <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key L2</span>
-                                <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key R2</span>
+                                <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key LB</span>
+                                <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key RB</span>
+                                <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key LT</span>
+                                <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key RT</span>
                                 <br />
-                                <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Select</span>
+                                <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Back</span>
                                 <span class="${this.gamepad.buttons[9].value ? 'pressed' : ''}">Key Start</span>
                                 <span class="${this.gamepad.buttons[10].value ? 'pressed' : ''}">Key at Left Stick</span>
                                 <span class="${this.gamepad.buttons[11].value ? 'pressed' : ''}">Key at Right Stick</span>
@@ -65,10 +67,10 @@ class ActiveGamepad extends Gamepad {
                                 <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
                                 <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
                                 <br />
-                                <span>Left Axe X: ${this.gamepad.axes[0]}</span>
-                                <span>Left Axe Y: ${this.gamepad.axes[1]}</span>
-                                <span>Right Axe X: ${this.gamepad.axes[2]}</span>
-                                <span>Right Axe Y: ${this.gamepad.axes[3]}</span>`;
+                                <span>Left Stick X: ${this.gamepad.axes[0] ? this.gamepad.axes[0] : ''}</span>
+                                <span>Left Stick Y: ${this.gamepad.axes[1] ? this.gamepad.axes[1] : ''}</span>
+                                <span>Right Stick X: ${this.gamepad.axes[2] ? this.gamepad.axes[2] : ''}</span>
+                                <span>Right Stick Y: ${this.gamepad.axes[3] ? this.gamepad.axes[3] : ''}</span>`;
     };
 };
 
@@ -107,7 +109,7 @@ class GamepadDriver {
             this.container.appendChild(gamepadContainer);
 
             this.gamepads.push(new ActiveGamepad(event.gamepad, `output-gamepad-${event.gamepad.index}`));
-            console.log(`Connection of the new gamepad at index ${event.gamepad.index} was happened.`);
+            console.log(`A new gamepad has been connected at index ${event.gamepad.index}.`);
         });
     };
 
@@ -119,7 +121,7 @@ class GamepadDriver {
                     this.gamepads.splice(index, 1);
                 };
             });
-            console.log(`Disconnecton of the gamepad at index ${event.gamepad.index} was happened.`);
+            console.log(`The gamepad with index ${event.gamepad.index} has been disabled.`);
         });
     };
 };
