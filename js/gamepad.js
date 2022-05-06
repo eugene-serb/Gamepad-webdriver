@@ -9,22 +9,18 @@
 /* ------- */
 
 class Gamepad {
-
     constructor(item) {
         this.gamepad = item;
-        this.interval = setInterval(this._update, 1);
+        this.interval = setInterval(this.update, 1);
     };
 
-    _update = () => {
+    update = () => {
         let gamepads = navigator.getGamepads();
         this.gamepad = gamepads[this.gamepad.index];
 
-        this._gamepadHandler();
+        this.gamepadHandler();
     };
-
-    _gamepadHandler = () => {
-        console.log(this.gamepad);
-    };
+    gamepadHandler = () => {};
 };
 
 /* --------------- */
@@ -32,43 +28,40 @@ class Gamepad {
 /* --------------- */
 
 class ActiveGamepad extends Gamepad {
-
     constructor(item, container) {
-        super();
-
-        this.gamepad = item;
+        super(item);
         this.container = document.querySelector(`.${container}`);
     };
 
-    _gamepadHandler = () => {
+    gamepadHandler = () => {
         this.container.innerHTML = `
-                                <h3>GamePad ${this.gamepad.index}</h3>
-                                <span>${this.gamepad.id}</span>
-                                <br />
-                                <span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
-                                <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
-                                <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
-                                <span class="${this.gamepad.buttons[3].value ? 'pressed' : ''}">Key Y</span>
-                                <br />
-                                <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key LB</span>
-                                <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key RB</span>
-                                <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key LT</span>
-                                <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key RT</span>
-                                <br />
-                                <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Back</span>
-                                <span class="${this.gamepad.buttons[9].value ? 'pressed' : ''}">Key Start</span>
-                                <span class="${this.gamepad.buttons[10].value ? 'pressed' : ''}">Key at Left Stick</span>
-                                <span class="${this.gamepad.buttons[11].value ? 'pressed' : ''}">Key at Right Stick</span>
-                                <br />
-                                <span class="${this.gamepad.buttons[12].value ? 'pressed' : ''}">Key Forward</span>
-                                <span class="${this.gamepad.buttons[13].value ? 'pressed' : ''}">Key Backward</span>
-                                <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
-                                <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
-                                <br />
-                                <span>Left Stick X: ${this.gamepad.axes[0] ? this.gamepad.axes[0] : 'missing'}</span>
-                                <span>Left Stick Y: ${this.gamepad.axes[1] ? this.gamepad.axes[1] : 'missing'}</span>
-                                <span>Right Stick X: ${this.gamepad.axes[2] ? this.gamepad.axes[2] : 'missing'}</span>
-                                <span>Right Stick Y: ${this.gamepad.axes[3] ? this.gamepad.axes[3] : 'missing'}</span>`;
+                                    <h3>GamePad ${this.gamepad.index}</h3>
+                                    <span>${this.gamepad.id}</span>
+                                    <br />
+                                    <span class="${this.gamepad.buttons[0].value ? 'pressed' : ''}">Key A</span>
+                                    <span class="${this.gamepad.buttons[1].value ? 'pressed' : ''}">Key B</span>
+                                    <span class="${this.gamepad.buttons[2].value ? 'pressed' : ''}">Key X</span>
+                                    <span class="${this.gamepad.buttons[3].value ? 'pressed' : ''}">Key Y</span>
+                                    <br />
+                                    <span class="${this.gamepad.buttons[4].value ? 'pressed' : ''}">Key LB</span>
+                                    <span class="${this.gamepad.buttons[5].value ? 'pressed' : ''}">Key RB</span>
+                                    <span class="${this.gamepad.buttons[6].value ? 'pressed' : ''}">Key LT</span>
+                                    <span class="${this.gamepad.buttons[7].value ? 'pressed' : ''}">Key RT</span>
+                                    <br />
+                                    <span class="${this.gamepad.buttons[8].value ? 'pressed' : ''}">Key Back</span>
+                                    <span class="${this.gamepad.buttons[9].value ? 'pressed' : ''}">Key Start</span>
+                                    <span class="${this.gamepad.buttons[10].value ? 'pressed' : ''}">Key at Left Stick</span>
+                                    <span class="${this.gamepad.buttons[11].value ? 'pressed' : ''}">Key at Right Stick</span>
+                                    <br />
+                                    <span class="${this.gamepad.buttons[12].value ? 'pressed' : ''}">Key Forward</span>
+                                    <span class="${this.gamepad.buttons[13].value ? 'pressed' : ''}">Key Backward</span>
+                                    <span class="${this.gamepad.buttons[14].value ? 'pressed' : ''}">Key Left</span>
+                                    <span class="${this.gamepad.buttons[15].value ? 'pressed' : ''}">Key Right</span>
+                                    <br />
+                                    <span>Left Stick X: ${this.gamepad.axes[0] ? this.gamepad.axes[0] : 'missing'}</span>
+                                    <span>Left Stick Y: ${this.gamepad.axes[1] ? this.gamepad.axes[1] : 'missing'}</span>
+                                    <span>Right Stick X: ${this.gamepad.axes[2] ? this.gamepad.axes[2] : 'missing'}</span>
+                                    <span>Right Stick Y: ${this.gamepad.axes[3] ? this.gamepad.axes[3] : 'missing'}</span>`;
     };
 };
 
@@ -77,55 +70,47 @@ class ActiveGamepad extends Gamepad {
 /* -------------- */
 
 class GamepadMaster {
-
-    constructor(container) {
-        this.container = container;
-        this._init();
+    constructor() {
+        this.init();
     };
 
-    _init = () => {
-        if (!this._checkGamepadSupport()) {
+    init = () => {
+        if (!this.checkGamepadSupport()) {
             console.log(`This browser does not support of gamepads`);
             return;
         };
 
         this.gamepads = [];
 
-        this._connectGamepads();
-        this._disconnectGamepads();
+        this.#DOMs();
+        this.#eventListeners();
     };
 
-    _checkGamepadSupport = () => {
+    checkGamepadSupport = () => {
         return 'getGamepads' in window.navigator;
     };
 
-    _connectGamepads = () => {
+    #DOMs = () => {
+        this.$OUTPUT = document.querySelector('.output-wrapper');
+    };
+    #eventListeners = () => {
         window.addEventListener('gamepadconnected', (event) => {
-
             let gamepadContainer = document.createElement('section');
             gamepadContainer.classList.add(`output-gamepad-${event.gamepad.index}`);
-            this.container.appendChild(gamepadContainer);
-
+            this.$OUTPUT.appendChild(gamepadContainer);
             this.gamepads.push(new ActiveGamepad(event.gamepad, `output-gamepad-${event.gamepad.index}`));
-
             /*console.log(`A new gamepad has been connected at index ${event.gamepad.index}.`);*/
         });
-    };
-
-    _disconnectGamepads = () => {
         window.addEventListener('gamepaddisconnected', (event) => {
-
             this.gamepads.forEach((item, index) => {
                 if (item.gamepad.id === event.gamepad.id) {
                     clearInterval(this.gamepads[index].interval);
                     this.gamepads.splice(index, 1);
                 };
             });
-
             let gamepadContainer = document.querySelector(`.output-gamepad-${event.gamepad.index}`);
             gamepadContainer.setAttribute('hidden', '');
             gamepadContainer.classList.remove(`output-gamepad-${event.gamepad.index}`);
-
             /*console.log(`The gamepad with index ${event.gamepad.index} has been disabled.`);*/
         });
     };
@@ -135,6 +120,5 @@ class GamepadMaster {
 /* INITIALIZATION */
 /* -------------- */
 
-const OUTPUT = document.querySelector('.output-wrapper');
-const GAMEPAD_MASTER = new GamepadMaster(OUTPUT);
+const GAMEPAD_MASTER = new GamepadMaster();
 
