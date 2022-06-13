@@ -24,11 +24,11 @@ class GamepadMaster {
         
         if (!this.checkGamepadSupport()) {
             console.log(`This browser does not support of gamepads.`);
-            this.$message.innerText = `This browser does not support of gamepads.`;
+            this.$MESSAGE.innerText = `This browser does not support of gamepads.`;
             return;
         } else {
             console.log(`Press any gamepad's button or connect new gamepad.`);
-            this.$message.innerText = `Press any gamepad's button or connect new gamepad.`;
+            this.$MESSAGE.innerText = `Press any gamepad's button or connect new gamepad.`;
         };
 
         this.gamepads = [];
@@ -44,12 +44,12 @@ class GamepadMaster {
     };
     update = () => {
         if (this.gamepads.length > 0) {
-            this.$messageBox.setAttribute('hidden', 'hidden');
+            this.$MESSAGE_BOX.setAttribute('hidden', 'hidden');
             this.gamepads.forEach(item => {
                 item.update();
             });
         } else {
-            this.$messageBox.removeAttribute('hidden', 'hidden');
+            this.$MESSAGE_BOX.removeAttribute('hidden', 'hidden');
         };
     };
     draw = () => {
@@ -122,8 +122,8 @@ class GamepadMaster {
 
     #DOMs = () => {
         this.$OUTPUT = document.querySelector('.output-wrapper');
-        this.$message = document.querySelector('#message');
-        this.$messageBox = document.querySelector('.gamepad-message');
+        this.$MESSAGE = document.querySelector('#message');
+        this.$MESSAGE_BOX = document.querySelector('.gamepad-message');
     };
     #eventListeners = () => {
         window.addEventListener('gamepadconnected', (event) => {
