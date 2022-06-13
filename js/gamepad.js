@@ -87,7 +87,7 @@ class GamepadMaster {
                     <span>Right Stick Y: ${item.gamepad.axes[3] ? item.gamepad.axes[3] : 'missing'}</span>
                     <br />
                     <span>Vibration Actuator: ${item.gamepad.vibrationActuator ? 'Available' : 'missing'}</span>
-                    <span>${item.gamepad.vibrationActuator ? 'Press LB + RB for testing Vibration Actuator' : ''}</span>
+                    <span>${item.gamepad.vibrationActuator ? 'Press LB + RB to test the Vibration Actuator' : ''}</span>
                 </section>`;
             });
         };
