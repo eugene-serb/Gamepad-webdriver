@@ -97,12 +97,14 @@ class GamepadMaster {
             this.gamepads.forEach(item => {
                 if (item.gamepad.buttons[4].pressed === true &&
                     item.gamepad.buttons[5].pressed === true) {
-                    item.gamepad.vibrationActuator.playEffect('dual-rumble', {
-                        startDelay: 0,
-                        duration: 500,
-                        weakMagnitude: 1.0,
-                        strongMagnitude: 1.0,
-                    });
+                    if (item.gamepad.vibrationActuator) {
+                        item.gamepad.vibrationActuator.playEffect('dual-rumble', {
+                            startDelay: 0,
+                            duration: 500,
+                            weakMagnitude: 1.0,
+                            strongMagnitude: 1.0,
+                        });
+                    };
                 };
             });
         };
