@@ -62,34 +62,34 @@ class GamepadMaster {
                     <span>${gamepad.unit.id}</span>
                     <div class="gamepad-group">
                         <div>
-                            <span class="${gamepad.unit.buttons[0].value === 1 ? 'pressed' : ''}">Key A</span>
-                            <span class="${gamepad.unit.buttons[1].value === 1 ? 'pressed' : ''}">Key B</span>
-                            <span class="${gamepad.unit.buttons[2].value === 1 ? 'pressed' : ''}">Key X</span>
-                            <span class="${gamepad.unit.buttons[3].value === 1 ? 'pressed' : ''}">Key Y</span>
+                            <span class="${gamepad.unit.buttons[0].value === 1 ? 'pressed' : ''}">A: ${gamepad.unit.buttons[0].value}</span>
+                            <span class="${gamepad.unit.buttons[1].value === 1 ? 'pressed' : ''}">B: ${gamepad.unit.buttons[1].value}</span>
+                            <span class="${gamepad.unit.buttons[2].value === 1 ? 'pressed' : ''}">X: ${gamepad.unit.buttons[2].value}</span>
+                            <span class="${gamepad.unit.buttons[3].value === 1 ? 'pressed' : ''}">Y: ${gamepad.unit.buttons[3].value}</span>
                         </div>
                         <div>
-                            <span class="${gamepad.unit.buttons[4].value === 1 ? 'pressed' : ''}">Key LB</span>
-                            <span class="${gamepad.unit.buttons[5].value === 1 ? 'pressed' : ''}">Key RB</span>
-                            <span class="${gamepad.unit.buttons[6].value === 1 ? 'pressed' : ''}">Key LT</span>
-                            <span class="${gamepad.unit.buttons[7].value === 1 ? 'pressed' : ''}">Key RT</span>
+                            <span class="${gamepad.unit.buttons[4].value === 1 ? 'pressed' : ''}">LB: ${gamepad.unit.buttons[4].value}</span>
+                            <span class="${gamepad.unit.buttons[5].value === 1 ? 'pressed' : ''}">RB: ${gamepad.unit.buttons[5].value}</span>
+                            <span class="${gamepad.unit.buttons[6].value === 1 ? 'pressed' : ''}">LT: ${gamepad.unit.buttons[6].value}</span>
+                            <span class="${gamepad.unit.buttons[7].value === 1 ? 'pressed' : ''}">RT: ${gamepad.unit.buttons[7].value}</span>
                         </div>
                         <div>
-                            <span class="${gamepad.unit.buttons[8].value === 1 ? 'pressed' : ''}">Key Back</span>
-                            <span class="${gamepad.unit.buttons[9].value === 1 ? 'pressed' : ''}">Key Start</span>
-                            <span class="${gamepad.unit.buttons[10].value === 1 ? 'pressed' : ''}">Key at Left Stick</span>
-                            <span class="${gamepad.unit.buttons[11].value === 1 ? 'pressed' : ''}">Key at Right Stick</span>
+                            <span class="${gamepad.unit.buttons[8].value === 1 ? 'pressed' : ''}">Back: ${gamepad.unit.buttons[8].value}</span>
+                            <span class="${gamepad.unit.buttons[9].value === 1 ? 'pressed' : ''}">Start: ${gamepad.unit.buttons[9].value}</span>
+                            <span class="${gamepad.unit.buttons[10].value === 1 ? 'pressed' : ''}">Left Stick: ${gamepad.unit.buttons[10].value}</span>
+                            <span class="${gamepad.unit.buttons[11].value === 1 ? 'pressed' : ''}">Right Stick: ${gamepad.unit.buttons[11].value}</span>
                         </div>
                         <div>
-                            <span class="${gamepad.unit.buttons[12].value === 1 ? 'pressed' : ''}">Key Forward</span>
-                            <span class="${gamepad.unit.buttons[13].value === 1 ? 'pressed' : ''}">Key Backward</span>
-                            <span class="${gamepad.unit.buttons[14].value === 1 ? 'pressed' : ''}">Key Left</span>
-                            <span class="${gamepad.unit.buttons[15].value === 1 ? 'pressed' : ''}">Key Right</span>
+                            <span class="${gamepad.unit.buttons[12].value === 1 ? 'pressed' : ''}">Forward: ${gamepad.unit.buttons[12].value}</span>
+                            <span class="${gamepad.unit.buttons[13].value === 1 ? 'pressed' : ''}">Backward: ${gamepad.unit.buttons[13].value}</span>
+                            <span class="${gamepad.unit.buttons[14].value === 1 ? 'pressed' : ''}">Left: ${gamepad.unit.buttons[14].value}</span>
+                            <span class="${gamepad.unit.buttons[15].value === 1 ? 'pressed' : ''}">Right: ${gamepad.unit.buttons[15].value}</span>
                         </div>
                         <div>
-                            <span>Left Stick X: ${gamepad.unit.axes[0] === 1 ? gamepad.unit.axes[0].toFixed(2) : 'missing'}</span>
-                            <span>Left Stick Y: ${gamepad.unit.axes[1] === 1 ? gamepad.unit.axes[1].toFixed(2) : 'missing'}</span>
-                            <span>Right Stick X: ${gamepad.unit.axes[2] === 1 ? gamepad.unit.axes[2].toFixed(2) : 'missing'}</span>
-                            <span>Right Stick Y: ${gamepad.unit.axes[3] === 1 ? gamepad.unit.axes[3].toFixed(2) : 'missing'}</span>
+                            <span>Left Stick X: ${gamepad.unit.axes[0] ? gamepad.unit.axes[0].toFixed(2) : 'missing'}</span>
+                            <span>Left Stick Y: ${gamepad.unit.axes[1] ? gamepad.unit.axes[1].toFixed(2) : 'missing'}</span>
+                            <span>Right Stick X: ${gamepad.unit.axes[2] ? gamepad.unit.axes[2].toFixed(2) : 'missing'}</span>
+                            <span>Right Stick Y: ${gamepad.unit.axes[3] ? gamepad.unit.axes[3].toFixed(2) : 'missing'}</span>
                         </div>
                     </div>
                     <span>Vibration Actuator: ${gamepad.unit.vibrationActuator ? 'Available' : 'missing'}</span>
