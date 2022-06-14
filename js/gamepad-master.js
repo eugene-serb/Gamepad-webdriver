@@ -44,12 +44,12 @@ class GamepadMaster {
     };
     update = () => {
         if (this.gamepads.length > 0) {
-            this.$MESSAGE_BOX.setAttribute('hidden', 'hidden');
+            this.$MESSAGE_BOX.classList.add('hidden', 'hidden');
             this.gamepads.forEach(gamepad => {
                 gamepad.update();
             });
         } else {
-            this.$MESSAGE_BOX.removeAttribute('hidden', 'hidden');
+            this.$MESSAGE_BOX.classList.remove('hidden', 'hidden');
         };
     };
     draw = () => {
