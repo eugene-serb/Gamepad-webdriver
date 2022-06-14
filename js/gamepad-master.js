@@ -130,8 +130,8 @@ class GamepadMaster {
             this.gamepads.push(new Gamepad(event.gamepad));
         });
         window.addEventListener('gamepaddisconnected', (event) => {
-            this.gamepads.forEach((item, index) => {
-                if (item.gamepad.id === event.gamepad.id) {
+            this.gamepads.forEach((gamepad, index) => {
+                if (gamepad.unit.id === gamepad.unit.id) {
                     this.gamepads.splice(index, 1);
                 };
             });
