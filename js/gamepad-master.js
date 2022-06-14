@@ -45,8 +45,8 @@ class GamepadMaster {
     update = () => {
         if (this.gamepads.length > 0) {
             this.$MESSAGE_BOX.setAttribute('hidden', 'hidden');
-            this.gamepads.forEach(item => {
-                item.update();
+            this.gamepads.forEach(gamepad => {
+                gamepad.update();
             });
         } else {
             this.$MESSAGE_BOX.removeAttribute('hidden', 'hidden');
@@ -123,7 +123,7 @@ class GamepadMaster {
     #DOMs = () => {
         this.$OUTPUT = document.querySelector('.output-wrapper');
         this.$MESSAGE = document.querySelector('#message');
-        this.$MESSAGE_BOX = document.querySelector('.gamepad-message');
+        this.$MESSAGE_BOX = document.querySelector('.message-box');
     };
     #eventListeners = () => {
         window.addEventListener('gamepadconnected', (event) => {
