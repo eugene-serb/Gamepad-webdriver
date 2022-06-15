@@ -58,8 +58,7 @@ class GamepadMaster {
             this.gamepads.forEach(gamepad => {
                 this.$OUTPUT.innerHTML += `
                 <section class="output-gamepad">
-                    <h3>GamePad ${ gamepad.unit.index }</h3>
-                    <span>${ gamepad.unit.id }</span>
+                    <h3>#${ gamepad.unit.index + 1}. ${gamepad.unit.id }</h3>
                     <div class="gamepad-group">
                         <div>
                             <span class="${ gamepad.unit.buttons[0].value === 1 ? 'pressed' : ''}">A: ${gamepad.unit.buttons[0].value.toFixed(2) }</span>
