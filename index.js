@@ -1,13 +1,10 @@
-/* -------------- */
-/* GAMEPAD MASTER */
-/* -------------- */
-
 'use strict';
 
 class Gamepad {
   constructor(gamepad) {
     this.unit = gamepad;
   };
+  
   update = () => {
     let gamepads = navigator.getGamepads();
     this.unit = gamepads[this.unit.index];
@@ -42,6 +39,7 @@ class GamepadMaster {
     this.draw();
     this.eventHandler();
   };
+
   update = () => {
     if (this.gamepads.length > 0) {
       this.$MESSAGE_BOX.classList.add('hidden', 'hidden');
@@ -52,6 +50,7 @@ class GamepadMaster {
       this.$MESSAGE_BOX.classList.remove('hidden', 'hidden');
     };
   };
+
   draw = () => {
     this.$OUTPUT.innerHTML = '';
     if (this.gamepads.length > 0) {
@@ -97,6 +96,7 @@ class GamepadMaster {
       });
     };
   };
+
   eventHandler = () => {
     if (this.gamepads.length > 0) {
       this.gamepads.forEach(gamepad => {
@@ -124,6 +124,7 @@ class GamepadMaster {
     this.$MESSAGE = document.querySelector('#message');
     this.$MESSAGE_BOX = document.querySelector('.message-box');
   };
+
   #eventListeners = () => {
     window.addEventListener('gamepadconnected', (event) => {
       this.gamepads.push(new Gamepad(event.gamepad));
@@ -137,10 +138,6 @@ class GamepadMaster {
     });
   };
 };
-
-/* -------------- */
-/* INITIALIZATION */
-/* -------------- */
 
 const GAMEPAD_MASTER = new GamepadMaster();
 
